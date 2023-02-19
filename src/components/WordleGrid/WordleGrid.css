@@ -1,0 +1,11 @@
+.wordle-grid-row{
+    display: flex;
+    margin-bottom: 1rem;
+}
+.wordle-grid{
+    display: flex;
+    margin-block-start: 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

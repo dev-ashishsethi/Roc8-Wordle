@@ -1,42 +1,47 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url('https://www.dafontfree.net/embed/cG9ldHNlbi1vbmUtcmVndWxhciZkYXRhLzgvcC80NTU0Ny9Qb2V0c2VuT25lLVJlZ3VsYXIudHRm');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap');
+
+*{
+    margin: 0;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+:root{
+--success-color:#41CA3D;
+--wrong-position-color:#F1BD40;
+--wrong-color:#727271;
+--text-color:#A984FA;
+--verified-text-color:#FFFFFF;
+--cta-color:#9769F9;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.theme{
+    background-color: var(--main-backgrd-color);
+    font-family: 'Nunito';
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.dark-theme{
+    --main-backgrd-color:#221F20;
+    --blocked-grid-color:#DEDEDE;
+    --nav-line:white;
+    background-color: var(--main-backgrd-color);
 }
 
-.card {
-  padding: 2em;
+.light-theme{
+    --main-backgrd-color:white;
+    --blocked-grid-color:#E9E9E9;
+    --nav-line:#221F20;
+    background-color: var(--main-backgrd-color);
 }
 
-.read-the-docs {
-  color: #888;
+.navbar{
+    display: flex;
+    margin-inline: 4rem;
+    justify-content: space-between;
+    align-items: center;
+    height: 5rem;
+    border-bottom: 1px solid var(--nav-line);
+}
+
+.wordleLogo{
+    width: 10.5rem;
 }

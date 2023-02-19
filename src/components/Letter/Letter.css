@@ -1,0 +1,13 @@
+.letter-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    margin-left: 1rem;
+    border: 1px solid var(--text-color);
+    text-align: center;
+    text-rendering: optimizeLegibility;
+    border-radius: 5px;
+    color: var(--text-color);
+}
