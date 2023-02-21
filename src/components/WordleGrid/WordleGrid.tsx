@@ -1,6 +1,9 @@
+import { useWordle, WordleContextType } from '../../context/WordleContext'
 import Letter from '../Letter/Letter'
 import './WordleGrid.css'
 export const WordleGrid = () => {
+	const { board, setBoard } = useWordle() as WordleContextType
+
 	function renderLetterBox(attemptVal: number) {
 		let letterBox = []
 		for (let letterPos = 0; letterPos < 5; letterPos++) {

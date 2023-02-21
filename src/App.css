@@ -17,11 +17,12 @@
 .theme{
     background-color: var(--main-backgrd-color);
     font-family: 'Nunito';
+    height: 100vh;
 }
 
 .dark-theme{
     --main-backgrd-color:#221F20;
-    --blocked-grid-color:#DEDEDE;
+    --blocked-grid-color:#E9E9E9;
     --nav-line:white;
     background-color: var(--main-backgrd-color);
 }

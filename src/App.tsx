@@ -6,6 +6,7 @@ import { WordleGrid } from './components/WordleGrid/WordleGrid'
 import Toggle from './components/Toggle/Toggle'
 import Header from './components/Header/Header'
 import { WordleProvider } from './context/WordleContext'
+import Keyboard from './components/Keyboard/Keyboard'
 
 export function darkState() {
 	if (!sessionStorage.getItem('darkMode'))
@@ -25,6 +26,7 @@ function App() {
 				</nav>
 				<Header />
 				<WordleGrid />
+				<Keyboard />
 			</section>
 		</WordleProvider>
 	)

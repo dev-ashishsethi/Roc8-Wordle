@@ -1,4 +1,4 @@
-.letter-box{
+.key{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,19 +8,12 @@
     border: 1px solid var(--text-color);
     text-align: center;
     text-rendering: optimizeLegibility;
+    background-color: var(--blocked-grid-color);
     border-radius: 5px;
     color: var(--text-color);
+    font-weight: 700;
+    cursor: pointer;
 }
-
-#correct{
-    background-color: var(--success-color);
-    color: white;
-}
-#wrongPos{
-    background-color: var(--wrong-position-color);
-    color: white;
-}
-#error{
-    background-color: var(--wrong-color);
-    color: white;
+.big{
+    width: 4rem;
 }

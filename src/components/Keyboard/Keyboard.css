@@ -1,0 +1,10 @@
+.keyboard-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.keyboard-row{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+}
