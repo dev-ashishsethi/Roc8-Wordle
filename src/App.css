@@ -46,3 +46,31 @@
 .wordleLogo{
     width: 10.5rem;
 }
+
+.toast{
+    position: absolute;
+    color: white;
+    background-color: #A984FA;
+    z-index: 999;
+    transform: translate(50vw,20vh);
+    width: 10rem;
+    height: 10rem;
+    text-align: center;
+    line-height: 10rem;
+    animation-name: toasty;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+}
+@keyframes toasty{
+    from{
+        display: block;
+    }
+    to{
+        /* display: none; */
+        background-color: #41CA3D;
+
+    }
+}
+.alert{
+    background-color: red;
+}

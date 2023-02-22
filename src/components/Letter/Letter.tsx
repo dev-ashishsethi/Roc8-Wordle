@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { useWordle, WordleContextType } from '../../context/WordleContext'
 import './Letter.css'
 
@@ -7,19 +8,23 @@ interface LetterType {
 	letterPos: number
 }
 function Letter({ attemptVal, letterPos }: LetterType) {
-	const { board, setBoard, currAttempt, correctWord } =
+	const { board, currAttempt, correctWord, setDisabledLetters } =
 		useWordle() as WordleContextType
 	const letter = board[letterPos][attemptVal]
-
 	const correct = correctWord[letterPos] === letter
+
 	const wrongPosition =
 		!correct && letter !== '' && correctWord.includes(letter)
-	console.log('currAttempt.attempt', currAttempt.attempt)
 
 	const letterStatus =
 		currAttempt.attempt > attemptVal &&
 		(correct ? 'correct' : wrongPosition ? 'wrongPos' : 'error')
 
+	useEffect(() => {
+		if (letter !== '' && !correct && !wrongPosition) {
+			setDisabledLetters((disabledLetters) => [...disabledLetters, letter])
+		}
+	}, [currAttempt.attempt])
 	return (
 		<section className='letter-box' id={letterStatus || ''}>
 			{letter}

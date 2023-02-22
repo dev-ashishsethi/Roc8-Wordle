@@ -8,7 +8,7 @@ function Keyboard() {
 	const secondLineOfKeys = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L']
 	const thirdLineOfKeys = ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
 
-	const { onLetterSelect, onDelete, onEnter, currAttempt, setCurrAttempt } =
+	const { onLetterSelect, onDelete, onEnter, currAttempt, disabledLetters } =
 		useWordle() as WordleContextType
 	const handleKeyboard = useCallback(
 		(event: KeyboardEventInit) => {
@@ -46,16 +46,31 @@ function Keyboard() {
 		<section className='keyboard-section'>
 			<section className='keyboard-row'>
 				{firstLineOfKeys.length > 0 &&
-					firstLineOfKeys.map((keyLetter) => <Key keys={keyLetter} />)}
+					firstLineOfKeys.map((keyLetter) => (
+						<Key
+							keys={keyLetter}
+							disabled={disabledLetters.includes(keyLetter)}
+						/>
+					))}
 			</section>
 			<section className='keyboard-row'>
 				{secondLineOfKeys.length > 0 &&
-					secondLineOfKeys.map((keyLetter) => <Key keys={keyLetter} />)}
+					secondLineOfKeys.map((keyLetter) => (
+						<Key
+							keys={keyLetter}
+							disabled={disabledLetters.includes(keyLetter)}
+						/>
+					))}
 			</section>
 			<section className='keyboard-row'>
 				<Key keys={'ENTER'} bigKey />
 				{thirdLineOfKeys.length > 0 &&
-					thirdLineOfKeys.map((keyLetter) => <Key keys={keyLetter} />)}
+					thirdLineOfKeys.map((keyLetter) => (
+						<Key
+							keys={keyLetter}
+							disabled={disabledLetters.includes(keyLetter)}
+						/>
+					))}
 				<Key keys={'DELETE'} bigKey />
 			</section>
 		</section>

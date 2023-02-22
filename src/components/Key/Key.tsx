@@ -4,23 +4,29 @@ import './Key.css'
 interface KeyProps {
 	keys: string
 	bigKey?: boolean
+	disabled?: boolean
 }
 
-function Key({ keys, bigKey }: KeyProps) {
+function Key({ keys, bigKey, disabled }: KeyProps) {
 	const { onLetterSelect, onDelete, onEnter } = useWordle() as WordleContextType
 
 	function keyHandler() {
-		if (keys === 'ENTER') {
-			onEnter()
-		} else if (keys === 'DELETE') {
-			onDelete()
-		} else {
-			onLetterSelect(keys)
+		if (!disabled) {
+			if (keys === 'ENTER') {
+				onEnter()
+			} else if (keys === 'DELETE') {
+				onDelete()
+			} else {
+				onLetterSelect(keys)
+			}
 		}
 	}
 
 	return (
-		<section className={`key ${bigKey ? 'big' : ''}`} onClick={keyHandler}>
+		<section
+			className={'key'}
+			id={bigKey ? 'big' : disabled ? 'disabled' : ''}
+			onClick={keyHandler}>
 			{keys}
 		</section>
 	)

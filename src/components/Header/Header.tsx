@@ -1,12 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import clock from '../../assets/clock.svg'
-import score from '../../assets/score.svg'
+import scoreImg from '../../assets/score.svg'
+import { useWordle, WordleContextType } from '../../context/WordleContext'
 import './Header.css'
 function Header() {
 	const [isShow, setIsShow] = useState(false)
 	function handleShowMore() {
 		setIsShow((isShow) => !isShow)
 	}
+	const { meaning, score } = useWordle() as WordleContextType
+	const [timer, setTimer] = useState(120)
+
+	useEffect(() => {
+		let intervalId = setInterval(() => {
+			setTimer((time) => (time > 0 ? time - 1 : 0))
+		}, 1000)
+
+		return () => clearInterval(intervalId)
+	}, [])
 	return (
 		<section className='header-container'>
 			<section className='header-subcontainer'>
@@ -14,21 +25,25 @@ function Header() {
 					<img src={clock} alt='' />
 					<section className='time-section'>
 						<p>Time</p>
-						<p className='time'>1:00</p>
+						<p className='time'>
+							{timer / 60 > 0
+								? `${Math.floor(timer / 60)}:${
+										timer % 60 === 0 ? '00' : timer % 60
+								  }`
+								: timer}
+						</p>
 					</section>
 					<span className='pipe'>|</span>
-					<img src={score} alt='' />
+					<img src={scoreImg} alt='' />
 					<section className='score-section'>
 						<p>Score</p>
-						<p className='time'>20</p>
+						<p className='time'>{score}</p>
 					</section>
 				</section>
 				<section className='hint-container'>
 					<section className='hint-section'>
 						<span className={`hint ${isShow ? 'show' : ''}`}>
-							Hint: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Voluptates, vel. asbbaslkc akscjb aksca cbjksbcakc kabkckas xc
-							kjasbicbkam cma skcb
+							Hint: {meaning}
 						</span>
 					</section>
 					<span className='show-more' onClick={handleShowMore}>
