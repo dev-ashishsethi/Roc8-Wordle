@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast'
 import clock from '../../assets/clock.svg'
 import scoreImg from '../../assets/score.svg'
 import { useWordle, WordleContextType } from '../../context/WordleContext'
@@ -8,16 +9,22 @@ function Header() {
 	function handleShowMore() {
 		setIsShow((isShow) => !isShow)
 	}
-	const { meaning, score } = useWordle() as WordleContextType
-	const [timer, setTimer] = useState(120)
+	const { meaning, score, isWon, setIsLost } = useWordle() as WordleContextType
+	const [timer, setTimer] = useState(60)
 
 	useEffect(() => {
 		let intervalId = setInterval(() => {
 			setTimer((time) => (time > 0 ? time - 1 : 0))
 		}, 1000)
-
+		if (isWon) {
+			clearInterval(intervalId)
+		}
+		if (timer === 0) {
+			setIsLost(true)
+			toast.error('TIME OUT!!')
+		}
 		return () => clearInterval(intervalId)
-	}, [])
+	}, [timer])
 	return (
 		<section className='header-container'>
 			<section className='header-subcontainer'>

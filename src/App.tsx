@@ -6,6 +6,7 @@ import Toggle from './components/Toggle/Toggle'
 import Header from './components/Header/Header'
 import Keyboard from './components/Keyboard/Keyboard'
 import { Toaster } from 'react-hot-toast'
+import { useWordle, WordleContextType } from './context/WordleContext'
 
 export function darkState() {
 	if (!sessionStorage.getItem('darkMode'))
@@ -15,6 +16,7 @@ export function darkState() {
 
 function App() {
 	const [isDarkMode, setIsDarkMode] = useState(darkState())
+	const { isLost, correctWord } = useWordle() as WordleContextType
 	return (
 		<section className={`theme ${isDarkMode ? 'dark-theme' : 'light-theme'}`}>
 			<nav className='navbar'>
@@ -30,7 +32,7 @@ function App() {
 			/>
 			<Header />
 			<WordleGrid />
-			<Keyboard />
+			{isLost ? `Correct Word is ${correctWord}` : <Keyboard />}
 		</section>
 	)
 }

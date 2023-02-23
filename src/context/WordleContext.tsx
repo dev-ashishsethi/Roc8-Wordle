@@ -23,6 +23,10 @@ export type WordleContextType = {
 	disabledLetters: string[]
 	setDisabledLetters: React.Dispatch<React.SetStateAction<string[]>>
 	score: number
+	isLost: boolean
+	setIsLost: React.Dispatch<React.SetStateAction<boolean>>
+	isWon: boolean
+	setIsWon: React.Dispatch<React.SetStateAction<boolean>>
 }
 const WordleContext = createContext<WordleContextType | null>(null)
 
@@ -37,6 +41,8 @@ export function WordleProvider({ children }: ContextProps) {
 	const [isWordValid, setIsWordValid] = useState(true)
 	const [disabledLetters, setDisabledLetters] = useState([''])
 	const [score, setScore] = useState(0)
+	const [isLost, setIsLost] = useState(false)
+	const [isWon, setIsWon] = useState(false)
 
 	useEffect(() => {
 		while (word.length !== 5) {
@@ -81,6 +87,7 @@ export function WordleProvider({ children }: ContextProps) {
 
 	const onEnter = () => {
 		if (currAttempt.letterAttempt !== 5) return
+
 		let currRowWord = ''
 		for (let i = 0; i < 5; i++) {
 			currRowWord += board[i][currAttempt.attempt]
@@ -89,6 +96,11 @@ export function WordleProvider({ children }: ContextProps) {
 		if (currRowWord === correctWord) {
 			setScore(10 - currAttempt.attempt * 2)
 			toast.success('You Won!')
+			setIsWon(true)
+		}
+		if (currAttempt.attempt === 4 && correctWord !== currRowWord) {
+			toast.error(`You Lost`)
+			setIsLost(true)
 		}
 		;(async () => {
 			try {
@@ -127,6 +139,10 @@ export function WordleProvider({ children }: ContextProps) {
 				disabledLetters,
 				setDisabledLetters,
 				score,
+				isLost,
+				setIsLost,
+				isWon,
+				setIsWon,
 			}}>
 			{children}
 		</WordleContext.Provider>

@@ -18,17 +18,26 @@ function Keyboard() {
 				onDelete()
 			} else {
 				firstLineOfKeys.map((key) => {
-					if (event.key?.toLowerCase() === key.toLowerCase()) {
+					if (
+						event.key?.toLowerCase() === key.toLowerCase() &&
+						!disabledLetters.includes(key)
+					) {
 						onLetterSelect(key)
 					}
 				})
 				secondLineOfKeys.map((key) => {
-					if (event.key?.toLowerCase() === key.toLowerCase()) {
+					if (
+						event.key?.toLowerCase() === key.toLowerCase() &&
+						!disabledLetters.includes(key)
+					) {
 						onLetterSelect(key)
 					}
 				})
 				thirdLineOfKeys.map((key) => {
-					if (event.key?.toLowerCase() === key.toLowerCase()) {
+					if (
+						event.key?.toLowerCase() === key.toLowerCase() &&
+						!disabledLetters.includes(key)
+					) {
 						onLetterSelect(key)
 					}
 				})
