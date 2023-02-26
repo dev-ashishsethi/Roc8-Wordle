@@ -1,0 +1,54 @@
+dialog::backdrop{
+  backdrop-filter: blur(3px);
+}
+dialog{
+  position: absolute;
+  left: 10vw;
+  top: 20vh;
+}
+
+.popup{
+  border: none;
+  border-radius: 5px;
+}
+.popup-title{
+  text-align: center;
+  color: var(--cta-color);
+}
+.dark-popup{
+  color: white;
+}
+.light-popup{
+  color: black;
+}
+.color-section{
+  padding-right: 2rem;
+}
+h3{
+  text-align: center;
+}
+
+.btn-section{
+  text-align: center;
+}
+.play-btn{
+  background-color: var(--cta-color);
+  border: none;
+  color: white;
+  width: 10rem;
+  height: 3rem;
+  border-radius: 10px;
+}
+.dark-line{
+  border-right: 1px solid black;
+}
+.light-line{
+  border-right: 1px solid white;
+}
+.popup-grid{
+  display: grid;
+  grid-template-areas: 'color score';
+  line-height: 2rem;
+  margin-bottom: 5rem;
+  column-gap: 2rem;
+}

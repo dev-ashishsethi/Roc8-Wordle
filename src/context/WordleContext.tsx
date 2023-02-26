@@ -3,6 +3,7 @@ import { boardDefault } from '../board'
 import randomWords from 'random-words'
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
+import { darkState } from '../App'
 type Attempt = {
 	attempt: number
 	letterAttempt: number
@@ -27,6 +28,8 @@ export type WordleContextType = {
 	setIsLost: React.Dispatch<React.SetStateAction<boolean>>
 	isWon: boolean
 	setIsWon: React.Dispatch<React.SetStateAction<boolean>>
+	isDarkMode: boolean
+	setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>
 }
 const WordleContext = createContext<WordleContextType | null>(null)
 
@@ -43,7 +46,7 @@ export function WordleProvider({ children }: ContextProps) {
 	const [score, setScore] = useState(0)
 	const [isLost, setIsLost] = useState(false)
 	const [isWon, setIsWon] = useState(false)
-
+	const [isDarkMode, setIsDarkMode] = useState(darkState())
 	useEffect(() => {
 		while (word.length !== 5) {
 			word = randomWords({ exactly: 1, maxLength: 5 })[0]
@@ -143,6 +146,8 @@ export function WordleProvider({ children }: ContextProps) {
 				setIsLost,
 				isWon,
 				setIsWon,
+				isDarkMode,
+				setIsDarkMode,
 			}}>
 			{children}
 		</WordleContext.Provider>
