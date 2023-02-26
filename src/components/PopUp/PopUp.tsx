@@ -6,8 +6,10 @@ function PopUp() {
 	const dialog = useRef(null)
 	const { isDarkMode } = useWordle() as WordleContextType
 	useLayoutEffect(() => {
-		dialog.current.removeAttribute('open')
-		dialog.current.showModal()
+		if (dialog.current !== null) {
+			dialog.current.removeAttribute('open')
+			dialog.current.showModal()
+		}
 	}, [])
 
 	return (
