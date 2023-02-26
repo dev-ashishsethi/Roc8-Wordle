@@ -3,7 +3,7 @@ import sampleWordle from '../../assets/sampleWordle.png'
 import { useWordle, WordleContextType } from '../../context/WordleContext'
 import './PopUp.css'
 function PopUp() {
-	const dialog = useRef(null)
+	const dialog = useRef<HTMLDialogElement>(null)
 	const { isDarkMode } = useWordle() as WordleContextType
 	useLayoutEffect(() => {
 		if (dialog.current !== null) {
@@ -74,7 +74,9 @@ function PopUp() {
 				</section>
 			</section>
 			<section className='btn-section'>
-				<button className='play-btn' onClick={() => dialog.current.close()}>
+				<button
+					className='play-btn'
+					onClick={() => dialog.current !== null && dialog.current.close()}>
 					PLAY!
 				</button>
 			</section>
