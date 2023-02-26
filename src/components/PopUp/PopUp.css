@@ -38,6 +38,10 @@ h3{
   width: 10rem;
   height: 3rem;
   border-radius: 10px;
+  cursor: pointer;
+}
+.play-btn:focus-visible{
+  outline: none;
 }
 .dark-line{
   border-right: 1px solid black;
