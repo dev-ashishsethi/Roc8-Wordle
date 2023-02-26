@@ -4,7 +4,10 @@
     margin-top: 2rem;
     color: white;
 }
+.expand-arrow{
+    width: 1rem;
 
+}
 .header-subcontainer{
     display: flex;
     background-color: var(--cta-color);
@@ -13,7 +16,6 @@
     white-space: nowrap;
     padding: 1rem;
     border-radius: 10px;
-    /* width: 30rem; */
     text-align: justify;
 }
 .time-score-section{

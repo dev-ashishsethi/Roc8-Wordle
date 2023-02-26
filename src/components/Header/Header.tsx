@@ -4,12 +4,17 @@ import clock from '../../assets/clock.svg'
 import scoreImg from '../../assets/score.svg'
 import { useWordle, WordleContextType } from '../../context/WordleContext'
 import './Header.css'
+import downArrow from '../../assets/downArrow.svg'
+import downArrowLight from '../../assets/downArrowLight.svg'
+import upArrow from '../../assets/upArrow.svg'
+import upArrowLight from '../../assets/upArrowLight.svg'
 function Header() {
 	const [isShow, setIsShow] = useState(false)
 	function handleShowMore() {
 		setIsShow((isShow) => !isShow)
 	}
-	const { meaning, score, isWon, setIsLost } = useWordle() as WordleContextType
+	const { meaning, score, isWon, setIsLost, isDarkMode } =
+		useWordle() as WordleContextType
 	const [timer, setTimer] = useState(60)
 
 	useEffect(() => {
@@ -54,7 +59,15 @@ function Header() {
 						</span>
 					</section>
 					<span className='show-more' onClick={handleShowMore}>
-						{isShow ? '\u2B9D' : '\u2B9F'}
+						{isShow ? (
+							<img src={upArrowLight} alt='up arrow' className='expand-arrow' />
+						) : (
+							<img
+								src={downArrowLight}
+								alt='down arrow'
+								className='expand-arrow'
+							/>
+						)}
 					</span>
 				</section>
 			</section>
