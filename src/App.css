@@ -17,7 +17,7 @@
 .theme{
     background-color: var(--main-backgrd-color);
     font-family: 'Nunito';
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .dark-theme{
