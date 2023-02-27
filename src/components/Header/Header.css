@@ -1,3 +1,4 @@
+
 .header-container{
     display: flex;
     justify-content: center;
@@ -6,7 +7,6 @@
 }
 .expand-arrow{
     width: 1rem;
-
 }
 .header-subcontainer{
     display: flex;
@@ -62,4 +62,13 @@
 
 .hint-container{
     display: flex;
+}
+
+@media (max-width:425px) {
+    .header-subcontainer{
+        width: 20rem;
+    }
+    .pipe{
+        margin-inline: 6px;
+    }
 }

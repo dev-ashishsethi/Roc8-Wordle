@@ -45,7 +45,11 @@ function PopUp() {
 					<p>
 						<strong>Examples</strong>
 					</p>
-					<img src={sampleWordle} alt='Example image' />
+					<img
+						src={sampleWordle}
+						alt='Example image'
+						className='example-image'
+					/>
 					<ul>
 						<li>
 							<strong>Green</strong> color signifies the word in correct spot
@@ -64,8 +68,12 @@ function PopUp() {
 					<p>
 						<strong>Examples</strong>
 					</p>
-					<img src={sampleWordle} alt='Example image' />
-					<img src={sample} alt='Example image' />
+					<img
+						src={sampleWordle}
+						alt='Example image'
+						className='example-image'
+					/>
+					<img src={sample} alt='Example image' className='example-image' />
 					<p>Your score: 8</p>
 				</section>
 			</section>

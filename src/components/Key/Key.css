@@ -1,3 +1,4 @@
+
 .key{
     display: flex;
     align-items: center;
@@ -23,3 +24,8 @@
     border: none;
     cursor:not-allowed;
 }
+@media  (max-width:425px) {
+    .key{
+         margin-left: 0rem;
+    }
+ }

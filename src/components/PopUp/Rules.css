@@ -64,3 +64,19 @@ h3{
   margin-bottom: 5rem;
   column-gap: 2rem;
 }
+
+@media screen and (max-width:425px){
+  .popup-grid{
+    display: flex;
+    flex-direction: column;
+  }
+  .dark-line{
+    border: none;
+  }
+  .light-line{
+    border: none;
+  }
+  .example-image{
+    height: 2.5rem;
+  }
+}
