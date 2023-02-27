@@ -75,7 +75,7 @@ export function WordleProvider({ children }: ContextProps) {
 
 			setMeaning(response)
 		})()
-	}, [isLost, isWon])
+	}, [isLost, isWon, isTimeOut])
 
 	const onLetterSelect = (keys: string) => {
 		if (currAttempt.letterAttempt <= 4) {
