@@ -15,36 +15,38 @@ function Header() {
 		score,
 		isLost,
 		isWon,
+		setScore,
 		setIsTimeOut,
 		isTimeOut,
 		setIsReset,
 		isStart,
 		isReset,
 	} = useWordle() as WordleContextType
-	const initialTime = 60
+	const initialTime = 10
 	const [timer, setTimer] = useState(initialTime)
+
 	useEffect(() => {
-		if (isTimeOut) {
-			setTimer(initialTime)
-		}
-		if (isLost) {
+		if (isTimeOut) setTimer(initialTime)
+
+		if (isReset) {
 			setTimer(initialTime)
 			setIsReset(false)
 		}
+
+		if (isWon) setTimer(initialTime)
+
 		if (isStart) {
-			let intervalId = setInterval(() => {
-				setTimer((time) => (time > 0 ? time - 1 : 0))
-			}, 1000)
-			if (isWon) {
-				clearInterval(intervalId)
-			}
-			if (timer === 0) {
-				setIsTimeOut(true)
-			}
+			let intervalId = setInterval(
+				() => setTimer((time) => (time > 0 ? time - 1 : 0)),
+				1000,
+			)
+
+			if (isLost) clearInterval(intervalId)
+			if (timer === 0) setIsTimeOut(true)
 
 			return () => clearInterval(intervalId)
 		}
-	}, [timer, isStart, isTimeOut])
+	}, [timer, isTimeOut, isReset, isStart])
 	return (
 		<section className='header-container'>
 			<section className='header-subcontainer'>

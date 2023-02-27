@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 import { boardDefault } from '../../board'
 import { useWordle, WordleContextType } from '../../context/WordleContext'
 
@@ -17,6 +17,10 @@ function WinLosePopUp() {
 		setDisabledLetters,
 		setIsReset,
 		setCurrAttempt,
+		isWon,
+		setIsWon,
+		setScore,
+		score,
 	} = useWordle() as WordleContextType
 
 	function handlePlay() {
@@ -34,6 +38,8 @@ function WinLosePopUp() {
 		setDisabledLetters([''])
 		setIsReset(true)
 		setIsLost(false)
+		setIsWon(false)
+		setScore(0)
 	}
 
 	useLayoutEffect(() => {
@@ -43,6 +49,7 @@ function WinLosePopUp() {
 			btnRef.current.blur()
 		}
 	}, [isLost])
+
 	return (
 		<dialog
 			ref={dialog}
@@ -53,8 +60,8 @@ function WinLosePopUp() {
 				{isTimeOut ? `TIME OUT!!` : isLost ? 'YOU LOSE!' : 'YOU WIN!'}
 			</h1>
 			<h3>
-				Correct Answer is:{' '}
-				<strong className='correct-word'>{correctWord}</strong>
+				{isWon ? `Your Score is: ${score}` : 'Correct Answer is:'}{' '}
+				{!isWon && <strong className='correct-word'>{correctWord}</strong>}
 			</h3>
 
 			<section className='btn-section'>

@@ -1,5 +1,4 @@
 import wordleLogo from './assets/Wordle-logo.svg'
-import { useState } from 'react'
 import './App.css'
 import { WordleGrid } from './components/WordleGrid/WordleGrid'
 import Toggle from './components/Toggle/Toggle'
@@ -17,7 +16,7 @@ export function darkState() {
 }
 
 function App() {
-	const { isLost, correctWord, isDarkMode, isTimeOut, setIsDarkMode } =
+	const { isLost, isWon, isDarkMode, isTimeOut, setIsDarkMode } =
 		useWordle() as WordleContextType
 	return (
 		<section className={`theme ${isDarkMode ? 'dark-theme' : 'light-theme'}`}>
@@ -37,6 +36,7 @@ function App() {
 			<Rules />
 			{isTimeOut && <WinLosePopUp />}
 			{isLost && <WinLosePopUp />}
+			{isWon && <WinLosePopUp />}
 			<Keyboard />
 		</section>
 	)

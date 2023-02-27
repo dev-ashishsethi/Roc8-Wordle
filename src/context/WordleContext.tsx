@@ -36,6 +36,7 @@ export type WordleContextType = {
 	setIsTimeOut: React.Dispatch<React.SetStateAction<boolean>>
 	isReset: boolean
 	setIsReset: React.Dispatch<React.SetStateAction<boolean>>
+	setScore: React.Dispatch<React.SetStateAction<number>>
 }
 const WordleContext = createContext<WordleContextType | null>(null)
 
@@ -74,7 +75,7 @@ export function WordleProvider({ children }: ContextProps) {
 
 			setMeaning(response)
 		})()
-	}, [])
+	}, [isLost, isWon])
 
 	const onLetterSelect = (keys: string) => {
 		if (currAttempt.letterAttempt <= 4) {
@@ -163,6 +164,7 @@ export function WordleProvider({ children }: ContextProps) {
 				setIsTimeOut,
 				isReset,
 				setIsReset,
+				setScore,
 			}}>
 			{children}
 		</WordleContext.Provider>
