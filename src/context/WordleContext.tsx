@@ -121,7 +121,6 @@ export function WordleProvider({ children }: ContextProps) {
 					.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${currRowWord}`)
 					.then((res) => res.data.title)
 				if (response === 'No Definitions Found') {
-					console.log(response)
 					setIsWordValid(false)
 				}
 			} catch (error) {

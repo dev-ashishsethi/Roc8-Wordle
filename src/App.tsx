@@ -19,7 +19,6 @@ export function darkState() {
 function App() {
 	const { isLost, correctWord, isDarkMode, isTimeOut, setIsDarkMode } =
 		useWordle() as WordleContextType
-	console.log('islost', isLost)
 	return (
 		<section className={`theme ${isDarkMode ? 'dark-theme' : 'light-theme'}`}>
 			<nav className='navbar'>

@@ -26,7 +26,6 @@ function WinLosePopUp() {
 		const newBoard = [...boardDefault]
 		for (let i = 0; i < 5; i++) {
 			for (let j = 0; j < 5; j++) {
-				console.log('here board reset')
 				newBoard[i][j] = ''
 			}
 		}
@@ -40,7 +39,6 @@ function WinLosePopUp() {
 	useLayoutEffect(() => {
 		if (dialog.current !== null && btnRef.current !== null) {
 			dialog.current.removeAttribute('open')
-			console.log('lost modal open')
 			dialog.current.showModal()
 			btnRef.current.blur()
 		}

@@ -21,24 +21,21 @@ function Header() {
 		isStart,
 		isReset,
 	} = useWordle() as WordleContextType
-	const initialTime = 10
+	const initialTime = 60
 	const [timer, setTimer] = useState(initialTime)
 	useEffect(() => {
 		if (isTimeOut) {
 			setTimer(initialTime)
 		}
-		if (isReset) {
-			console.log('here')
+		if (isLost) {
 			setTimer(initialTime)
 			setIsReset(false)
 		}
 		if (isStart) {
-			console.log('timer', timer)
 			let intervalId = setInterval(() => {
 				setTimer((time) => (time > 0 ? time - 1 : 0))
 			}, 1000)
-			if (isWon || isLost) {
-				setTimer(initialTime)
+			if (isWon) {
 				clearInterval(intervalId)
 			}
 			if (timer === 0) {
