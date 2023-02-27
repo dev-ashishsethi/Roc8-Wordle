@@ -30,6 +30,12 @@ export type WordleContextType = {
 	setIsWon: React.Dispatch<React.SetStateAction<boolean>>
 	isDarkMode: boolean
 	setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>
+	isStart: boolean
+	setIsStart: React.Dispatch<React.SetStateAction<boolean>>
+	isTimeOut: boolean
+	setIsTimeOut: React.Dispatch<React.SetStateAction<boolean>>
+	isReset: boolean
+	setIsReset: React.Dispatch<React.SetStateAction<boolean>>
 }
 const WordleContext = createContext<WordleContextType | null>(null)
 
@@ -39,6 +45,7 @@ interface ContextProps {
 export function WordleProvider({ children }: ContextProps) {
 	let word = ''
 	const [currWord, setCurrWord] = useState('')
+	const [isStart, setIsStart] = useState(false)
 	const [correctWord, setCorrectWord] = useState('')
 	const [meaning, setMeaning] = useState('')
 	const [isWordValid, setIsWordValid] = useState(true)
@@ -47,6 +54,14 @@ export function WordleProvider({ children }: ContextProps) {
 	const [isLost, setIsLost] = useState(false)
 	const [isWon, setIsWon] = useState(false)
 	const [isDarkMode, setIsDarkMode] = useState(darkState())
+	const [isTimeOut, setIsTimeOut] = useState(false)
+	const [isReset, setIsReset] = useState(false)
+	const [board, setBoard] = useState(boardDefault)
+	const [currAttempt, setCurrAttempt] = useState({
+		attempt: 0,
+		letterAttempt: 0,
+	})
+
 	useEffect(() => {
 		while (word.length !== 5) {
 			word = randomWords({ exactly: 1, maxLength: 5 })[0]
@@ -60,11 +75,6 @@ export function WordleProvider({ children }: ContextProps) {
 			setMeaning(response)
 		})()
 	}, [])
-	const [board, setBoard] = useState(boardDefault)
-	const [currAttempt, setCurrAttempt] = useState({
-		attempt: 0,
-		letterAttempt: 0,
-	})
 
 	const onLetterSelect = (keys: string) => {
 		if (currAttempt.letterAttempt <= 4) {
@@ -148,6 +158,12 @@ export function WordleProvider({ children }: ContextProps) {
 				setIsWon,
 				isDarkMode,
 				setIsDarkMode,
+				isStart,
+				setIsStart,
+				isTimeOut,
+				setIsTimeOut,
+				isReset,
+				setIsReset,
 			}}>
 			{children}
 		</WordleContext.Provider>

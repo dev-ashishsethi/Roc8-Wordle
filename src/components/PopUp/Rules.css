@@ -2,14 +2,22 @@ dialog::backdrop{
   backdrop-filter: blur(3px);
 }
 dialog{
-  position: absolute;
-  left: 10vw;
-  top: 20vh;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  right: 'auto';
+  bottom: 'auto';
 }
 
 .popup{
   border: none;
   border-radius: 5px;
+}
+.dialog-section{
+display: flex;
+justify-content: center;
+align-items: center;
 }
 .popup-title{
   text-align: center;

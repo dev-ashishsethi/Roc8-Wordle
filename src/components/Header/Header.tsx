@@ -1,35 +1,53 @@
-import React, { useEffect, useState } from 'react'
-import { toast } from 'react-hot-toast'
+import { useEffect, useState } from 'react'
 import clock from '../../assets/clock.svg'
 import scoreImg from '../../assets/score.svg'
 import { useWordle, WordleContextType } from '../../context/WordleContext'
 import './Header.css'
-import downArrow from '../../assets/downArrow.svg'
 import downArrowLight from '../../assets/downArrowLight.svg'
-import upArrow from '../../assets/upArrow.svg'
 import upArrowLight from '../../assets/upArrowLight.svg'
 function Header() {
 	const [isShow, setIsShow] = useState(false)
 	function handleShowMore() {
 		setIsShow((isShow) => !isShow)
 	}
-	const { meaning, score, isWon, setIsLost, isDarkMode } =
-		useWordle() as WordleContextType
-	const [timer, setTimer] = useState(60)
-
+	const {
+		meaning,
+		score,
+		isLost,
+		isWon,
+		setIsTimeOut,
+		isTimeOut,
+		setIsReset,
+		isStart,
+		isReset,
+	} = useWordle() as WordleContextType
+	const initialTime = 10
+	const [timer, setTimer] = useState(initialTime)
 	useEffect(() => {
-		let intervalId = setInterval(() => {
-			setTimer((time) => (time > 0 ? time - 1 : 0))
-		}, 1000)
-		if (isWon) {
-			clearInterval(intervalId)
+		if (isTimeOut) {
+			setTimer(initialTime)
 		}
-		if (timer === 0) {
-			setIsLost(true)
-			toast.error('TIME OUT!!')
+		if (isReset) {
+			console.log('here')
+			setTimer(initialTime)
+			setIsReset(false)
 		}
-		return () => clearInterval(intervalId)
-	}, [timer])
+		if (isStart) {
+			console.log('timer', timer)
+			let intervalId = setInterval(() => {
+				setTimer((time) => (time > 0 ? time - 1 : 0))
+			}, 1000)
+			if (isWon || isLost) {
+				setTimer(initialTime)
+				clearInterval(intervalId)
+			}
+			if (timer === 0) {
+				setIsTimeOut(true)
+			}
+
+			return () => clearInterval(intervalId)
+		}
+	}, [timer, isStart, isTimeOut])
 	return (
 		<section className='header-container'>
 			<section className='header-subcontainer'>

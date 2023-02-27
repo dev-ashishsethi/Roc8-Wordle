@@ -8,7 +8,7 @@ interface LetterType {
 	letterPos: number
 }
 function Letter({ attemptVal, letterPos }: LetterType) {
-	const { board, currAttempt, correctWord, setDisabledLetters } =
+	const { board, currAttempt, correctWord, isLost, setDisabledLetters } =
 		useWordle() as WordleContextType
 	const letter = board[letterPos][attemptVal]
 	const correct = correctWord[letterPos] === letter
@@ -26,7 +26,7 @@ function Letter({ attemptVal, letterPos }: LetterType) {
 		}
 	}, [currAttempt.attempt])
 	return (
-		<section className='letter-box' id={letterStatus || ''}>
+		<section className='letter-box' id={isLost ? '' : letterStatus || ''}>
 			{letter}
 		</section>
 	)

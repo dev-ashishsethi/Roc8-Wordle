@@ -1,10 +1,18 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import sampleWordle from '../../assets/sampleWordle.png'
+import sample from '../../assets/sample.png'
 import { useWordle, WordleContextType } from '../../context/WordleContext'
-import './PopUp.css'
+import './Rules.css'
+import { boardDefault } from '../../board'
 function PopUp() {
 	const dialog = useRef<HTMLDialogElement>(null)
-	const { isDarkMode } = useWordle() as WordleContextType
+	const { isDarkMode, setIsStart } = useWordle() as WordleContextType
+
+	function handlePlay() {
+		dialog.current !== null && dialog.current.close()
+		setIsStart(true)
+	}
+
 	useLayoutEffect(() => {
 		if (dialog.current !== null) {
 			dialog.current.removeAttribute('open')
@@ -51,32 +59,18 @@ function PopUp() {
 					</ul>
 				</section>
 				<section>
-					<h4>Color</h4>
-					<p>
-						The color of the titles will change to show how close your guess was
-						to the word
-					</p>
+					<h4>Score</h4>
+					<p>Every retake will affect your score by 2</p>
 					<p>
 						<strong>Examples</strong>
 					</p>
 					<img src={sampleWordle} alt='Example image' />
-					<ul>
-						<li>
-							<strong>Green</strong> color signifies the word in correct spot
-						</li>
-						<li>
-							<strong>Yellow color</strong> signifies the word in wrong spot
-						</li>
-						<li>
-							<strong>Dark gray</strong> signifies the word should not use
-						</li>
-					</ul>
+					<img src={sample} alt='Example image' />
+					<p>Your score: 8</p>
 				</section>
 			</section>
 			<section className='btn-section'>
-				<button
-					className='play-btn'
-					onClick={() => dialog.current !== null && dialog.current.close()}>
+				<button className='play-btn' onClick={handlePlay}>
 					PLAY!
 				</button>
 			</section>
