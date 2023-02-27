@@ -22,7 +22,7 @@ function Header() {
 		isStart,
 		isReset,
 	} = useWordle() as WordleContextType
-	const initialTime = 10
+	const initialTime = 60
 	const [timer, setTimer] = useState(initialTime)
 
 	useEffect(() => {
